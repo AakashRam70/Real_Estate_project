@@ -1,0 +1,47 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+// import VscSettings from 'react-icons/vs'
+import { Swiper } from 'swiper/react'
+import { Autoplay } from "swiper/modules"
+import 'swiper/css'
+import 'swiper/css/pagination'
+
+const Properties = () => {
+    return (
+        <section className='max-pass-container'>
+            <div className='max-padd-container bg-primary py-16 xl:py-28 rounded-3xl'>
+                <span className='medium-18'>Your Fucture Home Awaits!</span>
+                <h2 className='h2'>Find Your Gream Here</h2>
+                <div className='flexBetween mt-8 mb-6'>
+                    <h5><span className='font-bold'>Showing 1-9</span> out of 3k properties</h5>
+                    <Link to={'/'} className='bg-white rounded-md h-10 w-10 p-2 border'></Link>
+                </div>
+                {/* container */}
+                <Swiper
+                    onAutoplay={{
+                        delay: 4000,
+                        disableOnInteraction: false,
+                    }}
+                    breakpoints={{
+                        600: {
+                            slidesPerView: 2,
+                            spaceBetween: 30,
+                        },
+                        1124: {
+                            slidesPerView: 3,
+                            spaceBetween: 30,
+                        },
+                        1300: {
+                            slidesPerView: 4,
+                            spaceBetween: 30,
+                        }
+                    }}
+                    modules={[Autoplay]}
+                    className='h-[480px] md:h-[533px] xl:h-[422px] mt-5'
+                >{ }</Swiper>
+            </div>
+        </section>
+    )
+}
+
+export default Properties;
