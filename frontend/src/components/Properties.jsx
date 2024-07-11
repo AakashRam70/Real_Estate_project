@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 // import VscSettings from 'react-icons/vs'
-import { Swiper } from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from "swiper/modules"
 import 'swiper/css'
 import 'swiper/css/pagination'
+import { PROPERTIES } from '../constant/data'
+import Item from './Item'
 
 const Properties = () => {
     return (
@@ -38,7 +40,14 @@ const Properties = () => {
                     }}
                     modules={[Autoplay]}
                     className='h-[480px] md:h-[533px] xl:h-[422px] mt-5'
-                >{ }</Swiper>
+                >
+                    {
+                        PROPERTIES.map((property) => (
+                            <SwiperSlide key={property.title}>
+                                <Item property={property} />
+                            </SwiperSlide>
+                        ))
+                    }</Swiper>
             </div>
         </section>
     )
