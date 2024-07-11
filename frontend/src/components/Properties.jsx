@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import VscSettings from 'react-icons/vs'
+import { VscSettings } from "react-icons/vsc";
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from "swiper/modules"
 import 'swiper/css'
@@ -13,14 +13,14 @@ const Properties = () => {
         <section className='max-pass-container'>
             <div className='max-padd-container bg-primary py-16 xl:py-28 rounded-3xl'>
                 <span className='medium-18'>Your Fucture Home Awaits!</span>
-                <h2 className='h2'>Find Your Gream Here</h2>
+                <h2 className='h2'>Find Your Dream Here</h2>
                 <div className='flexBetween mt-8 mb-6'>
                     <h5><span className='font-bold'>Showing 1-9</span> out of 3k properties</h5>
-                    <Link to={'/'} className='bg-white rounded-md h-10 w-10 p-2 border'></Link>
+                    <Link to={'/'} className='bg-white rounded-md h-10 w-10 p-2 border'><VscSettings /></Link>
                 </div>
                 {/* container */}
                 <Swiper
-                    onAutoplay={{
+                    autoplay={{
                         delay: 4000,
                         disableOnInteraction: false,
                     }}
@@ -47,7 +47,8 @@ const Properties = () => {
                                 <Item property={property} />
                             </SwiperSlide>
                         ))
-                    }</Swiper>
+                    }
+                </Swiper>
             </div>
         </section>
     )

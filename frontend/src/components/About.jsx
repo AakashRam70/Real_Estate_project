@@ -38,7 +38,7 @@ const About = () => {
     return (
         <section id='about' className='max-padd-container py-16 xl:py-28'>
             {/* container */}
-            <div className='fle flex-col xl:flex-row gap-10'>
+            <div className='flex flex-col xl:flex-row gap-10'>
                 {/* left side */}
                 <div className='flex-1 relative'>
                     <img src={aboutImg} alt="" className='rounded-3xl rounded-tr-[155px] w-[488px]' />
