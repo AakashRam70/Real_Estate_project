@@ -4,7 +4,4 @@ const router = express.Router()
 
 router.post("/register", createUser)
 
-export {
-    router as userRoute
-
-}
+export {router as userRoute}
