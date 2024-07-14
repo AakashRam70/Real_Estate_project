@@ -34,6 +34,6 @@ export const createResidency = asyncHandler(async (req, res) => {
         if (err.code === "P2002") {
             throw new Error("A residency with address already there")
         }
-        throw new Error(err.meaasge);
+        throw new Error(err.message);
     }
 })
