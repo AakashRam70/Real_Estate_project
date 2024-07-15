@@ -37,7 +37,7 @@ export const bookVisit = asyncHandler(async (req, res) => {
             await prisma.user.update({
                 where: { email: email },
                 data: {
-                    bookedVisits: { push: { id, date } },
+                    bookedVisits: { push: { id: id } },
                 },
             })
         }
@@ -102,7 +102,7 @@ export const toFav = asyncHandler(async (req, res) => {
         })
 
         if (user.favResidenciesID.includes(rid)) {
-            const updateUser = await prisma.user.update({
+            const updatedUser = await prisma.user.update({
                 where: { email },
                 data: {
                     favResidenciesID: {
@@ -110,7 +110,7 @@ export const toFav = asyncHandler(async (req, res) => {
                     }
                 }
             })
-            res.send({ message: "Remove from favourites", user: updateUser })
+            res.send({ message: "Remove from favourites", user: updatedUser })
         } else {
             const updatedUser = await prisma.user.update({
                 where: { email },
@@ -122,8 +122,8 @@ export const toFav = asyncHandler(async (req, res) => {
             })
             res.send({ message: "Updating favourites", user: updatedUser })
         }
-
     } catch (err) {
         throw new Error(err.message)
     }
+
 })
