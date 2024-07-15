@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import { MdClose, MdMenu } from 'react-icons/md'
 import userIcon from '../assets/user.svg'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const Header = () => {
 
   const [active, setActive] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
   const toggleMenu = () => setMenuOpened(!menuOpened)
+  const {loginWithRedirect} = useAuth0()
 
   useEffect(() => {
     const handleScroll = () => {

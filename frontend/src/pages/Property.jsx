@@ -6,6 +6,8 @@ import { PuffLoader } from 'react-spinners'
 import { MdOutlineBathtub, MdOutlineBed, MdOutlineGarage } from 'react-icons/md'
 import { CgRuler } from 'react-icons/cg'
 import HeartBtn from '../components/HeartBtn'
+import { FaLocationDot } from 'react-icons/fa6'
+import Map from '../components/Map'
 
 const Property = () => {
 
@@ -31,38 +33,56 @@ const Property = () => {
     return (
         <section className='max-padd-container my-[99px]'>
             <div className='pb-2 relative'>
-                <img src={data?.image} alt={data?.title} className='rounded-xl' />
+                <img src={data?.image} alt={data?.title} className='rounded-xl max-h-[27rem] self-center w-full object-cover' />
                 {/* like button */}
-                <div className='absolute top-4 right-6'>
+                <div className='absolute top-8 right-8'>
                     <HeartBtn />
                 </div>
             </div>
-            <h5 className='bold-16 my-1 text-secondary'>{data?.city}</h5>
-            <h4 className='medium-18 line-clamp-1'>{data?.title}</h4>
-            {/* info */}
-            <div className='flex gap-x-2 py-2'>
-                <div className='flexCenter gap-x-2 border-slate-900/50 pr-4 font-[500'>
-                    <MdOutlineBed />{data?.facilities.bedrooms}
-                </div>
+            {/* container */}
+            <div className='xl:flexBetween gap-8'>
+                {/* left side */}
+                <div className='flex-1'>
+                    <h5 className='bold-16 my-1 text-secondary'>{data?.city}</h5>
+                    <div className='flexBetween'>
+                        <h4 className='medium-18 line-clamp-1'>{data?.title}</h4>
+                        <div className='bold-20'>
+                            ${data?.price}.00
+                        </div>
+                    </div>
+                    {/* info */}
+                    <div className='flex gap-x-4 py-2'>
+                        <div className='flexCenter gap-x-2 border-slate-900/50 pr-4 font-[500'>
+                            <MdOutlineBed />{data?.facilities.bedrooms}
+                        </div>
 
-                <div className='flexCenter gap-x-2 border-slate-900/50 pr-4 font-[500'>
-                    <MdOutlineBathtub />{data?.facilities.bathrooms}
-                </div>
+                        <div className='flexCenter gap-x-2 border-slate-900/50 pr-4 font-[500'>
+                            <MdOutlineBathtub />{data?.facilities.bathrooms}
+                        </div>
 
-                <div className='flexCenter gap-x-2 border-slate-900/50 pr-4 font-[500'>
-                    <MdOutlineGarage />{data?.facilities.parkings}
-                </div>
+                        <div className='flexCenter gap-x-2 border-slate-900/50 pr-4 font-[500'>
+                            <MdOutlineGarage />{data?.facilities.parkings}
+                        </div>
 
-                <div className='flexCenter gap-x-2 border-slate-900/50 pr-4 font-[500]'>
-                    <CgRuler /> 400
+                        <div className='flexCenter gap-x-2 border-slate-900/50 pr-4 font-[500]'>
+                            <CgRuler /> 400
+                        </div>
+                    </div>
+                    <p className='pt-2 mb-4'>{data?.description}</p>
+                    <div className='flexStart gap-x-2 my-5'>
+                        <FaLocationDot />
+                        <div>
+                            {data?.address} {data?.city} {data?.country}
+                        </div>
+                    </div>
+                    <div className='flexBetween'>
+                        <button className='btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm'>Book the Visit</button>
+                    </div>
                 </div>
-            </div>
-            <p className='pt-2 mb-4 line-clamp-2'>{data?.description}</p>
-            <div className='flexBetween'>
-                <div className='bold-20'>
-                    ${data?.price}.00
+                {/* right side */}
+                <div className='flex-1'>
+                    <Map address={data?.address} city={data?.city} country={data?.country} />
                 </div>
-                <button className='btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm'>View Details</button>
             </div>
         </section>
     )
