@@ -6,7 +6,7 @@ import Favourites from './pages/Favourites';
 import Bookings from './pages/Bookings';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import Layout from './components/Layout';
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from 'react-toastify';
@@ -17,28 +17,35 @@ import Property from './pages/Property';
 export default function App() {
 
   const queryClient = new QueryClient();
+  const [userDetails, setUserDetails] = useState({
+    Favourites: [],
+    bookings: [],
+    token: null,
+  })
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Suspense fallback={<div>Loading data...</div>}>
-          <Header />
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path='/' element={<Home />} />
-              <Route path='/listing'>
-                <Route index element={<Listing />} />
-                <Route path=':propertyId' element={<Property />} />
+    <userDetailContext.Provider value={{ userDetails, setUserDetails }} >
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Suspense fallback={<div>Loading data...</div>}>
+            <Header />
+            <Routes>
+              <Route element={<Layout />}>
+                <Route path='/' element={<Home />} />
+                <Route path='/listing'>
+                  <Route index element={<Listing />} />
+                  <Route path=':propertyId' element={<Property />} />
+                </Route>
+                <Route path='/addproperty' element={<AddProperty />} />
+                <Route path='/bookings' element={<Bookings />} />
+                <Route path='/favourites' element={<Favourites />} />
               </Route>
-              <Route path='/addproperty' element={<AddProperty />} />
-              <Route path='/bookings' element={<Bookings />} />
-              <Route path='/favourites' element={<Favourites />} />
-            </Route>
-          </Routes>
-          <Footer />
-        </Suspense>
-      </BrowserRouter>
-      <ToastContainer />
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+            </Routes>
+            <Footer />
+          </Suspense>
+        </BrowserRouter>
+        <ToastContainer />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </userDetailContext.Provider>
   );
 }
