@@ -12,7 +12,7 @@ const Layout = () => {
     const { setUserDetails } = useContext(UserDetailContext)
     const { mutate } = useMutation({
         mutationKey: [user?.email, token],
-        mutationFn: () => createUser(user?.email)
+        mutationFn: (token) => createUser(user?.email)
     });
 
     useEffect(() => {

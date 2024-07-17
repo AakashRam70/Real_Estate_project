@@ -1,4 +1,5 @@
 import express from "express"
+import jwtCheck from "../config/auth0config.js";
 import {
     createResidency,
     getAllResidencies,
@@ -6,7 +7,7 @@ import {
 } from "../controllers/resdCntrl.js";
 const router = express.Router();
 
-router.post("/create", createResidency)
+router.post("/create", jwtCheck, createResidency)
 router.get("/allresd", getAllResidencies)
 router.get("/:id", getResidency)
 
