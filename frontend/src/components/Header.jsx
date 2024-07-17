@@ -54,7 +54,7 @@ const Header = () => {
               !isAuthenticated ? (<button onClick={loginWithRedirect} className='btn-secondary flexCenter gap-x-2 medium-16 rounded-full'>
                 <img src={userIcon} alt='' height={22} width={22} />
                 <span>Login</span>
-              </button>) : (<div><ProfileMenu user={user} Logout={logout} /></div>)
+              </button>) : (<ProfileMenu user={user} Logout={logout} />)
             }
           </div>
         </div>
