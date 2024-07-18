@@ -10,8 +10,8 @@ import "@mantine/core/styles.css"
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Auth0Provider
-      domain='dev-lfg5kzol7aqrnlu6.us.auth0.com'
-      clientId='oos8rA5ckiVZJRI65tRYJEeefKtCQXZZ'
+      domain='dev-60fxy0kxgzomkydj.us.auth0.com'
+      clientId='8OPe5xzNTifzV4tbP1LqNunjGvh6ZBMg'
       authorizationParams={{
         redirect_uri: "http://localhost:5173"
       }}

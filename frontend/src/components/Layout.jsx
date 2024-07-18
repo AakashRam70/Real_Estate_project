@@ -11,8 +11,8 @@ const Layout = () => {
     const { isAuthenticated, user, getAccessTokenWithPopup } = useAuth0();
     const { setUserDetails } = useContext(UserDetailContext)
     const { mutate } = useMutation({
-        mutationKey: [user?.email, token],
-        mutationFn: (token) => createUser(user?.email)
+        mutationKey: [user?.email],
+        mutationFn: (token) => createUser(user?.email, token)
     });
 
     useEffect(() => {
@@ -26,6 +26,7 @@ const Layout = () => {
             })
             localStorage.setItem("access_token", res)
             setUserDetails((prev) => ({ ...prev, token: res }));
+            // console.log(res)
 
             mutate(res)
         }
