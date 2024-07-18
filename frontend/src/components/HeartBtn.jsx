@@ -32,11 +32,9 @@ const HeartBtn = ({ id }) => {
     })
 
     const handleLike = () => {
-        const handleLike = () => {
-            if (validateLogin) {
-                setHeartColor((prev) => prev === "#8ac243" ? "white" : "#8ac243")
-            }
-        };
+        if (validateLogin) {
+            setHeartColor((prev) => prev === "#8ac243" ? "white" : "#8ac243")
+        }
     };
 
     return (
@@ -44,7 +42,7 @@ const HeartBtn = ({ id }) => {
             e.stopPropagation();
             handleLike();
         }
-        } size={23} color='white' className='cursor-pointer drop-shadow-sm' />
+        } size={23} color={heartColor} className='cursor-pointer drop-shadow-sm' />
     )
 }
 
