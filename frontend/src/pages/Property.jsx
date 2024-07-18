@@ -63,7 +63,7 @@ const Property = () => {
                 <img src={data?.image} alt={data?.title} className='rounded-xl max-h-[27rem] self-center w-full object-cover' />
                 {/* like button */}
                 <div className='absolute top-8 right-8'>
-                    <HeartBtn />
+                    <HeartBtn id={id} />
                 </div>
             </div>
             {/* container */}
