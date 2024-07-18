@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { useQuery } from 'react-query'
+import React, { useContext, useState } from 'react'
+import { useMutation, useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
-import { getProperty } from '../utils/api'
+import { getProperty, removeBooking } from '../utils/api'
 import { PuffLoader } from 'react-spinners'
 import { MdOutlineBathtub, MdOutlineBed, MdOutlineGarage } from 'react-icons/md'
 import { CgRuler } from 'react-icons/cg'
@@ -11,6 +11,9 @@ import Map from '../components/Map'
 import useAuthCheck from '../hooks/useAuthCheck'
 import { useAuth0 } from '@auth0/auth0-react'
 import BookingModal from '../components/BookingModal'
+import UserDetailContext from '../context/userDetailContext'
+import { Button } from '@mantine/core'
+import { toast } from 'react-toastify'
 
 const Property = () => {
 
@@ -22,6 +25,23 @@ const Property = () => {
     const [modalOpened, setModalOpened] = useState(false)
     const { validateLogin } = useAuthCheck()
     const { user } = useAuth0()
+
+    const {
+        userDetails: { token, bookings },
+        setUserDetails
+    } = useContext(UserDetailContext);
+
+    const { mutate: cancelBooking, isLoading: cancelling } = useMutation({
+        mutationFn: () => removeBooking(id, user?.email, token),
+        onSuccess: () => {
+            setUserDetails((prev) => ({
+                ...prev,
+                bookings: prev.bookings.filter((booking) => booking?.id !== id)
+            }))
+
+            toast.success("Booking cancelled", { position: "bottom-right" })
+        }
+    })
 
     if (isLoading) {
         return (
@@ -83,11 +103,23 @@ const Property = () => {
                         </div>
                     </div>
                     <div className='flexBetween'>
-                        <button
+                        {bookings?.map((booking) => booking.id).includes(id) ? (<>
+                            <Button onClick={() => cancelBooking()}
+                                varient="outline"
+                                w={"100%"}
+                                color='red'
+                                disabled={cancelling}
+                            >
+                                Cancel Booking
+                            </Button>
+                            <p>
+                                You've already booked visit for {bookings?.filter((booking) => booking?.id === id)[0].date}
+                            </p>
+                        </>) : (<button
                             onClick={() => {
                                 validateLogin() && setModalOpened(true);
-                            }} className='btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm'>Book the Visit</button>
-
+                            }} className='btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm w-full'>Book the Visit</button>)
+                        }
                         <BookingModal
                             opened={modalOpened}
                             setOpened={setModalOpened}
