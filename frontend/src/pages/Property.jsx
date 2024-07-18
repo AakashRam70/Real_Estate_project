@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
 import { getProperty } from '../utils/api'
@@ -8,6 +8,9 @@ import { CgRuler } from 'react-icons/cg'
 import HeartBtn from '../components/HeartBtn'
 import { FaLocationDot } from 'react-icons/fa6'
 import Map from '../components/Map'
+import useAuthCheck from '../hooks/useAuthCheck'
+import { useAuth0 } from '@auth0/auth0-react'
+import BookingModal from '../components/BookingModal'
 
 const Property = () => {
 
@@ -15,6 +18,10 @@ const Property = () => {
     const id = pathname.split("/").slice(-1)[0]
     const { data, isLoading, isError } = useQuery(["resd", id], () => getProperty(id))
     // console.log(data);
+
+    const [modalOpened, setModalOpened] = useState(false)
+    const { validateLogin } = useAuthCheck()
+    const { user } = useAuth0()
 
     if (isLoading) {
         return (
@@ -76,7 +83,17 @@ const Property = () => {
                         </div>
                     </div>
                     <div className='flexBetween'>
-                        <button className='btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm'>Book the Visit</button>
+                        <button
+                            onClick={() => {
+                                validateLogin() && setModalOpened(true);
+                            }} className='btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm'>Book the Visit</button>
+
+                        <BookingModal
+                            opened={modalOpened}
+                            setOpened={setModalOpened}
+                            propertyId={id}
+                            email={user?.email}
+                        />
                     </div>
                 </div>
                 {/* right side */}
