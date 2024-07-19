@@ -1,7 +1,13 @@
-import React from 'react'
-import { Avatar, Menu } from "@mantine/core"
+import React from 'react';
+import { Avatar, Menu } from "@mantine/core";
 
 const ProfileMenu = ({ user, logout }) => {
+    const handleLogout = () => {
+        console.log('Logging out...');
+        localStorage.clear();
+        logout();
+    };
+
     return (
         <Menu>
             <Menu.Target>
@@ -11,16 +17,11 @@ const ProfileMenu = ({ user, logout }) => {
                 <Menu.Label>Application</Menu.Label>
                 <Menu.Item>Favourites</Menu.Item>
                 <Menu.Item>Bookings</Menu.Item>
-                <Menu.Label>Application</Menu.Label>
-                <Menu.Item>Go back</Menu.Item>
-                <Menu.Item onClick={() => {
-                    localStorage.clear();
-                    logout();
-                }}
-                    color="red">Logout</Menu.Item>
+                <Menu.Label>Go back</Menu.Label>
+                <Menu.Item onClick={handleLogout} color='red'>Logout</Menu.Item>
             </Menu.Dropdown>
         </Menu>
-    )
-}
+    );
+};
 
 export default ProfileMenu;
