@@ -27,12 +27,12 @@ const Property = () => {
     const { user } = useAuth0()
 
     const {
-        userDetails: { token, bookings },
+        userDetails: { bookings },
         setUserDetails
     } = useContext(UserDetailContext);
 
     const { mutate: cancelBooking, isLoading: cancelling } = useMutation({
-        mutationFn: () => removeBooking(id, user?.email, token),
+        mutationFn: () => removeBooking(id, user?.email),
         onSuccess: () => {
             setUserDetails((prev) => ({
                 ...prev,
@@ -60,7 +60,7 @@ const Property = () => {
     return (
         <section className='max-padd-container my-[99px]'>
             <div className='pb-2 relative'>
-                <img src={data?.image} alt={data?.title} className='rounded-xl max-h-[27rem] self-center w-full object-cover' />
+                <img src={data?.image} alt={data?.title} className='rounded-xl max-h-[30rem] self-center w-full object-cover' />
                 {/* like button */}
                 <div className='absolute top-8 right-8'>
                     <HeartBtn id={id} />
