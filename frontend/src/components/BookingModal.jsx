@@ -39,6 +39,7 @@ const BookingModal = ({ opened, setOpened, email, propertyId }) => {
     return (
         <Modal
             opened={opened}
+            setOpened={setOpened}
             onClose={() => setOpened(false)}
             title="Select Your date to Visit"
             centered

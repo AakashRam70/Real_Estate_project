@@ -27,12 +27,12 @@ const Property = () => {
     const { user } = useAuth0()
 
     const {
-        userDetails: { bookings },
+        userDetails: { token,bookings },
         setUserDetails
     } = useContext(UserDetailContext);
 
     const { mutate: cancelBooking, isLoading: cancelling } = useMutation({
-        mutationFn: () => removeBooking(id, user?.email),
+        mutationFn: () => removeBooking(id, user?.email, token),
         onSuccess: () => {
             setUserDetails((prev) => ({
                 ...prev,
@@ -105,15 +105,15 @@ const Property = () => {
                     <div className='flexBetween'>
                         {bookings?.map((booking) => booking.id).includes(id) ? (<>
                             <Button onClick={() => cancelBooking()}
-                                varient="outline"
+                                variant="outline"
                                 w={"100%"}
                                 color='red'
                                 disabled={cancelling}
                             >
                                 Cancel Booking
                             </Button>
-                            <p>
-                                You've already booked visit for {bookings?.filter((booking) => booking?.id === id)[0].date}
+                            <p className='text-red-500 medium-15 ml-3'>
+                                Your Recidency is Booked On Date {bookings?.filter((booking) => booking?.id === id)[0].date}
                             </p>
                         </>) : (<button
                             onClick={() => {
