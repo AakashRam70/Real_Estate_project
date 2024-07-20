@@ -27,7 +27,7 @@ const Property = () => {
     const { user } = useAuth0()
 
     const {
-        userDetails: { token,bookings },
+        userDetails: { token, bookings },
         setUserDetails
     } = useContext(UserDetailContext);
 
