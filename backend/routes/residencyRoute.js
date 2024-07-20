@@ -1,5 +1,5 @@
 import express from "express"
-import jwtCheck from "../config/auth0config.js";
+import jwtCheck from "../config/auth0Config.js";
 import {
     createResidency,
     getAllResidencies,
