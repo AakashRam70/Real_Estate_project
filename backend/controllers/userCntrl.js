@@ -22,7 +22,7 @@ export const createUser = asyncHandler(async (req, res) => {
 
 // to book a visit to resd 
 export const bookVisit = asyncHandler(async (req, res) => {
-    const { email, data } = req.body;
+    const { email, date } = req.body;
     const { id } = req.params
 
     try {
@@ -40,8 +40,8 @@ export const bookVisit = asyncHandler(async (req, res) => {
                     bookedVisits: { push: { id: id } },
                 },
             })
+            res.send("Your visit is booked successfully..")
         }
-        res.send("Your visit is booked successfully..")
     } catch (error) {
         throw new Error(err.message)
     }
@@ -63,8 +63,8 @@ export const allBookings = asyncHandler(async (req, res) => {
 
 // to cancle a booking
 export const cancleBooking = asyncHandler(async (req, res) => {
-    const { email } = req.body
-    const { id } = req.params
+    const { email } = req.body;
+    const { id } = req.params;
 
     try {
         const user = await prisma.user.findUnique({
@@ -77,7 +77,9 @@ export const cancleBooking = asyncHandler(async (req, res) => {
         if (index === -1) {
             res.status(404).json({ message: "booking not found" })
         } else {
-            user.bookedVisits.splice(index, 1)
+            const updatedVisits = [...user.bookedVisits];
+            updatedVisits.splice(index, 1);
+
             await prisma.user.update({
                 where: { email },
                 data: {
