@@ -9,6 +9,8 @@ import { useMutation } from "react-query"
 
 const Layout = () => {
 
+    useFavourites()
+
     const { isAuthenticated, user, getAccessTokenWithPopup } = useAuth0();
     const { setUserDetails } = useContext(UserDetailContext)
     const { mutate } = useMutation({
