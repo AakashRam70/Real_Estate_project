@@ -121,7 +121,7 @@ export const toFav = asyncHandler(async (req, res) => {
                         push: rid
                     }
                 }
-            })
+            });
             res.send({ message: "Updating favourites", user: updatedUser })
         }
     } catch (err) {
@@ -138,9 +138,8 @@ export const getAllFav = asyncHandler(async (req, res) => {
             where: { email },
             select: { favResidenciesID: true }
         })
-
         res.status(200).send(favResd)
     } catch (err) {
         throw new Error(err.message)
     }
-})
+});

@@ -36,7 +36,7 @@ export const createResidency = asyncHandler(async (req, res) => {
         }
         throw new Error(err.message);
     }
-})
+});
 
 // get all residencies 
 export const getAllResidencies = asyncHandler(async (req, res) => {
