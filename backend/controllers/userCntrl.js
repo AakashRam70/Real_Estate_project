@@ -62,7 +62,7 @@ export const allBookings = asyncHandler(async (req, res) => {
 })
 
 // to cancle a booking
-export const cancleBooking = asyncHandler(async (req, res) => {
+export const cancelBooking = asyncHandler(async (req, res) => {
     const { email } = req.body;
     const { id } = req.params;
 

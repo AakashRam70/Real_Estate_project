@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaHeart } from 'react-icons/fa6'
 import useAuthCheck from '../hooks/useAuthCheck'
 import { useMutation } from 'react-query'
 import { useAuth0 } from '@auth0/auth0-react'
 import UserDetailContext from '../context/userDetailContext'
 import { toFav } from '../utils/api'
-import { updateFavourites } from '../utils/common'
+import { checkFavourites, updateFavourites } from '../utils/common'
 
 const HeartBtn = ({ id }) => {
 
@@ -32,11 +32,15 @@ const HeartBtn = ({ id }) => {
     })
 
     const handleLike = () => {
-        if (validateLogin) {
+        if (validateLogin()) {
             mutate();
             setHeartColor((prev) => prev === "#8ac243" ? "white" : "#8ac243")
         }
     };
+
+    useEffect(() => {
+        setHeartColor(() => checkFavourites(id, favourites))
+    }, [favourites])
 
     return (
         <FaHeart onClick={(e) => {

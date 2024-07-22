@@ -114,7 +114,7 @@ const Property = () => {
                                 Cancel Booking
                             </Button>
                             <p className='text-red-500 medium-15 ml-3'>
-                                Your Recidency is Booked On Date {bookings?.filter((booking) => booking?.id === id)[0].date}
+                                You've already booked visit for {bookings?.filter((booking) => booking?.id === id)[0].date}
                             </p>
                         </>) : (<button
                             onClick={() => {

@@ -80,7 +80,6 @@ export const removeBooking = async (id, email, token) => {
     } catch (error) {
         toast.error("Something went wrong, Try again please")
         throw error
-
     }
 }
 

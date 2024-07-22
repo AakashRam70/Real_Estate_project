@@ -3,7 +3,7 @@ import Header from './Header'
 import Footer from './Footer'
 import { Outlet } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react';
-import UserDetailContext from '../context/userDetailContext';
+import UserDetailContext from '../context/userDetailContext.js';
 import { createUser } from '../utils/api';
 import { useMutation } from "react-query"
 

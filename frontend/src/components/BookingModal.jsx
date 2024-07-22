@@ -17,6 +17,7 @@ const BookingModal = ({ opened, setOpened, email, propertyId }) => {
 
     const handleBookingSuccess = () => {
         toast.success("Your visit has been booked successfully", { position: "bottom-right" });
+        
         setUserDetails((prev) => ({
             ...prev,
             bookings: [

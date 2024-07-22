@@ -13,7 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import { ReactQueryDevtools } from "react-query/devtools";
 import "react-toastify/dist/ReactToastify.css";
 import Property from './pages/Property';
-import UserDetailContext from './context/userDetailContext';
+import UserDetailContext from './context/userDetailContext.js';
 
 export default function App() {
 
