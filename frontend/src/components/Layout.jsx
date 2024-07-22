@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import Header from './Header'
+import Footer from './Footer'
 import { Outlet } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react';
 import UserDetailContext from '../context/userDetailContext';
@@ -40,6 +41,7 @@ const Layout = () => {
                 <Header />
                 <Outlet />
             </div>
+            <Footer />
         </>
     );
 };

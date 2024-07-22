@@ -41,7 +41,6 @@ export default function App() {
                 <Route path='/favourites' element={<Favourites />} />
               </Route>
             </Routes>
-            <Footer />
           </Suspense>
         </BrowserRouter>
         <ToastContainer />
