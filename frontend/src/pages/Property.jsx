@@ -18,6 +18,7 @@ import { toast } from 'react-toastify'
 const Property = () => {
 
     const { pathname } = useLocation()
+    // console.log(pathname)
     const id = pathname.split("/").slice(-1)[0]
     const { data, isLoading, isError } = useQuery(["resd", id], () => getProperty(id))
     // console.log(data);
