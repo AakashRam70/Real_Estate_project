@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Listing from './pages/Listing';
-import AddProperty from './pages/AddProperty';
 import Favourites from './pages/Favourites';
 import Bookings from './pages/Bookings';
 import Header from './components/Header';
@@ -36,7 +35,6 @@ export default function App() {
                   <Route index element={<Listing />} />
                   <Route path=':propertyId' element={<Property />} />
                 </Route>
-                <Route path='/addproperty' element={<AddProperty />} />
                 <Route path='/bookings' element={<Bookings />} />
                 <Route path='/favourites' element={<Favourites />} />
               </Route>

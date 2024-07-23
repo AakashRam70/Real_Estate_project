@@ -112,9 +112,32 @@ export const getAllFav = async (email, token) => {
             },
         }
         );
-        return res;
+        return res.data["favResidenciesID"];
     } catch (error) {
         toast.error("Something went wrong while fetching favs")
         throw error;
     }
-}
+};
+
+export const getAllBookings = async (email, token) => {
+    if (!token) return
+    try {
+        const res = await api.post(`/user/allBookings`,
+            {
+                email
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+            }
+        );
+        // console.log("res", res);
+
+        return res.data["bookedVisits"];
+    } catch (error) {
+        toast.error("Something went wrong while fetching bookings");
+        throw error;
+    }
+};
+

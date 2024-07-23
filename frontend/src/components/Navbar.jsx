@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { MdAddHome, MdHomeWork, MdPermContactCalendar } from 'react-icons/md';
 import { RiCheckboxMultipleBlankFill } from 'react-icons/ri';
+import AddPropertyModal from './AddPropertyModal';
 
 const Navbar = ({ containerStyles }) => {
     return (
@@ -25,12 +26,13 @@ const Navbar = ({ containerStyles }) => {
                 <div>Contact</div>
             </NavLink>
 
-            <NavLink
+            <div
                 to={'/addproperty'}
                 className={'flexCenter gap-x-1 rounded-full px-2 py-1 cursor-pointer'}>
                 <MdAddHome />
                 <div>add property</div>
-            </NavLink>
+            </div>
+            <AddPropertyModal />
         </nav>
     )
 }
