@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { MdAddHome, MdHomeWork, MdPermContactCalendar } from 'react-icons/md';
 import { RiCheckboxMultipleBlankFill } from 'react-icons/ri';
 import AddPropertyModal from './AddPropertyModal';
 
 const Navbar = ({ containerStyles }) => {
+
+    const [modalOpened, setModalOpened] = useState(false);
+
     return (
         <nav className={`${containerStyles}`}>
             <NavLink
@@ -27,12 +30,13 @@ const Navbar = ({ containerStyles }) => {
             </NavLink>
 
             <div
-                to={'/addproperty'}
+                onClick={}
                 className={'flexCenter gap-x-1 rounded-full px-2 py-1 cursor-pointer'}>
                 <MdAddHome />
                 <div>add property</div>
             </div>
-            <AddPropertyModal />
+            <AddPropertyModal opened={modalOpened} />
+            setOpened={setModalOpened}
         </nav>
     )
 }
