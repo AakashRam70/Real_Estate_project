@@ -7,7 +7,7 @@ import { getAllFav } from '../utils/api';
 const useFavourites = () => {
 
     const { userDetails, setUserDetails } = useContext(UserDetailContext);
-    const querRef = useRef();
+    const queryRef = useRef();
     const { user } = useAuth0();
 
     const { data, isLoading, isError, refetch } = useQuery({
