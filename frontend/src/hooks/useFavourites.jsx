@@ -19,6 +19,7 @@ const useFavourites = () => {
     });
 
     queryRef.current = refetch;
+    // refetch data = podi;
 
     useEffect(() => {
         queryRef.current && queryRef.current()

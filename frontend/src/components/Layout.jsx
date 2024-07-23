@@ -6,6 +6,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import UserDetailContext from '../context/userDetailContext.js';
 import { createUser } from '../utils/api';
 import { useMutation } from "react-query"
+import useFavourites from '../hooks/useFavourites.jsx';
 
 const Layout = () => {
 
