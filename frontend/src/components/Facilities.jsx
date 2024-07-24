@@ -1,11 +1,17 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { Box, Button, Group, NumberInput } from '@mantine/core'
+import { 
+    Box, 
+    Button, 
+    Group, 
+    NumberInput 
+} from '@mantine/core'
 import { useForm } from '@mantine/form'
 import React, { useContext } from 'react'
 import UserDetailContext from '../context/userDetailContext'
 import useProperties from '../hooks/useProperties'
 import { useMutation } from 'react-query'
 import { toast } from 'react-toastify'
+import { createResidency } from '../utils/api'
 
 const Facilities = ({
     prevStep,
@@ -49,7 +55,7 @@ const Facilities = ({
         mutationFn: () => createResidency({
             ...propertyDetails, facilities: { bedrooms, parkings, bathrooms },
         },
-            token
+            token, user?.email
         ),
         onError: ({ response }) =>
             toast.error(response.data.message, { position: "bottom-right" }),
@@ -114,4 +120,4 @@ const Facilities = ({
     )
 }
 
-export default Facilities
+export default Facilities;
