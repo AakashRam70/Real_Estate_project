@@ -40,31 +40,32 @@ const AddPropertyModal = ({ opened, setOpened }) => {
             size={"90rem"}
         >
             <Container h={"34rem"} w={'100%'}>
-
-                <Stepper active={active} onStepClick={setActive}>
-                    <Stepper.Step label="Location" description="Address">
-                        <AddLocation
-                            nextStep={nextStep}
-                            propertyDetails={propertyDetails}
-                            setPropertyDetails={setPropertyDetails}
-                        />
-                    </Stepper.Step>
-                    <Stepper.Step label="Second step" description="Verify email">
-                        <UploadImage
-                            prevStep={prevStep}
-                            nextStep={nextStep}
-                            propertyDetails={propertyDetails}
-                            setPropertyDetails={setPropertyDetails}
-                        />
-                    </Stepper.Step>
-                    <Stepper.Step label="Final step" description="Get full access">
-                        Step 3 content: Get full access
-                    </Stepper.Step>
-                    <Stepper.Completed>
-                        Completed, click back button to get to previous step
-                    </Stepper.Completed>
-                </Stepper>
-
+                <>
+                    <Stepper active={active} onStepClick={setActive}
+                        allowNextStepsSelect={false}>
+                        <Stepper.Step label="Location" description="Address">
+                            <AddLocation
+                                nextStep={nextStep}
+                                propertyDetails={propertyDetails}
+                                setPropertyDetails={setPropertyDetails}
+                            />
+                        </Stepper.Step>
+                        <Stepper.Step label="Second step" description="Verify email">
+                            <UploadImage
+                                prevStep={prevStep}
+                                nextStep={nextStep}
+                                propertyDetails={propertyDetails}
+                                setPropertyDetails={setPropertyDetails}
+                            />
+                        </Stepper.Step>
+                        <Stepper.Step label="Final step" description="Get full access">
+                            Step 3 content: Get full access
+                        </Stepper.Step>
+                        <Stepper.Completed>
+                            Completed, click back button to get to previous step
+                        </Stepper.Completed>
+                    </Stepper>
+                </>
             </Container>
         </Modal >
     )

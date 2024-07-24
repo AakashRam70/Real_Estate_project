@@ -4,29 +4,33 @@ import { Button, Group, Select, TextInput } from '@mantine/core';
 import useCountries from '../hooks/useCountries';
 import Map from './Map';
 
+const validateString = (value) => {
+    return value ? null : 'This field is required';
+}
 
 const AddLocation = ({ propertyDetails, setPropertyDetails, nextStep }) => {
 
     const { getAll } = useCountries();
     const form = useForm({
         initialValues: {
-            country: propertyDetails?.country,
-            city: propertyDetails?.city,
-            address: propertyDetails?.address,
+            country: propertyDetails?.country || '',
+            city: propertyDetails?.city || '',
+            address: propertyDetails?.address || '',
         },
         validate: {
-            country: (value) => validateString(value),
-            city: (value) => validateString(value),
-            address: (value) => validateString(value)
+            country: validateString,
+            city: validateString,
+            address: validateString
         }
     })
 
-    const { city, country, address } = form.values;
+    const { country, city, address } = form.values;
 
     const handleSubmit = () => {
-        const { hasError } = form.validate;
-        if (!hasError) {
-            setPropertyDetails((prev) => ({ ...prev, city, address, country }))
+        const { hasErrors } = form.validate();
+        if (!hasErrors) {
+            setPropertyDetails((prev) => ({ ...prev, country, city, address }));
+            nextStep(); // Proceed to the next step
         }
     }
 
@@ -37,12 +41,10 @@ const AddLocation = ({ propertyDetails, setPropertyDetails, nextStep }) => {
                 handleSubmit();
             }}
         >
-            {/* left  */}
+            {/* left */}
             <div className='flexCenter'>
-
-
                 <div className='flexCenter flex-1'>
-                    {/* inputs  */}
+                    {/* inputs */}
                     <div>
                         <Select
                             w={"100%"}
@@ -51,40 +53,33 @@ const AddLocation = ({ propertyDetails, setPropertyDetails, nextStep }) => {
                             clearable
                             searchable
                             data={getAll()}
-                            {
-                            ...form.getInputProps("country", { type: "input" })
-                            }
-
+                            {...form.getInputProps("country")}
                         />
                         <TextInput
                             w={"100%"}
                             withAsterisk
                             label="City"
-                            {
-                            ...form.getInputProps("city", { type: "input" })
-                            }
+                            {...form.getInputProps("city")}
                         />
                         <TextInput
                             w={"100%"}
                             withAsterisk
                             label="Address"
-                            {
-                            ...form.getInputProps("address", { type: "input" })
-                            }
+                            {...form.getInputProps("address")}
                         />
                     </div>
                 </div>
-                {/* right  */}
+                {/* right */}
                 <div className='flex-1'>
                     <Map address={address} city={city} country={country} />
                 </div>
             </div>
 
             <Group justify="center" mt="xl">
-                <Button onClick={nextStep}>Next step</Button>
+                <Button type='submit'>Next step</Button>
             </Group>
         </form>
     )
 }
 
-export default AddLocation
+export default AddLocation;
