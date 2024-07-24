@@ -3,6 +3,9 @@ import { Box, Button, Group, NumberInput } from '@mantine/core'
 import { useForm } from '@mantine/form'
 import React, { useContext } from 'react'
 import UserDetailContext from '../context/userDetailContext'
+import useProperties from '../hooks/useProperties'
+import { useMutation } from 'react-query'
+import { toast } from 'react-toastify'
 
 const Facilities = ({
     prevStep,
@@ -38,9 +41,40 @@ const Facilities = ({
 
     // upload 
 
-    const {user} = useAuth0();
-    const {userDetails: {token}} = useContext(UserDetailContext);
-    const {refetch: refetchProperties} = useProperties();
+    const { user } = useAuth0();
+    const { userDetails: { token } } = useContext(UserDetailContext);
+    const { refetch: refetchProperties } = useProperties();
+
+    const { mutate, isLoading } = useMutation({
+        mutationFn: () => createResidency({
+            ...propertyDetails, facilities: { bedrooms, parkings, bathrooms },
+        },
+            token
+        ),
+        onError: ({ response }) =>
+            toast.error(response.data.message, { position: "bottom-right" }),
+        onSettled: () => {
+            toast.success("Added Successfully", { position: "bottom-right" });
+            setPropertyDetails({
+                title: "",
+                description: '',
+                price: 0,
+                country: "",
+                city: '',
+                address: '',
+                image: null,
+                facilities: {
+                    bedrooms: 0,
+                    parkings: 0,
+                    bathrooms: 0,
+                },
+                userEmail: user?.email, //Ensure userEmail is included in propertyDetails.
+            });
+            setOpened(false),
+                setActiveStep(0),
+                refetchProperties();
+        }
+    });
 
     return (
         <Box maw={"30%"} mx="auto" my={"sm"}>

@@ -141,3 +141,5 @@ export const getAllBookings = async (email, token) => {
     }
 };
 
+export const createResidency
+
