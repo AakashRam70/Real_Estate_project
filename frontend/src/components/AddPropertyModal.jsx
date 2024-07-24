@@ -36,7 +36,7 @@ const AddPropertyModal = ({ opened, setOpened }) => {
             opened={opened}
             onClose={() => setOpened(false)}
             closeOnClickOutside
-            size={"88rem"}
+            size={"90rem"}
         >
             <Container h={"34rem"} w={'100%'}>
 
@@ -58,11 +58,6 @@ const AddPropertyModal = ({ opened, setOpened }) => {
                         Completed, click back button to get to previous step
                     </Stepper.Completed>
                 </Stepper>
-
-                <Group justify="center" mt="xl">
-                    <Button variant="default" onClick={prevStep}>Back</Button>
-                    <Button onClick={nextStep}>Next step</Button>
-                </Group>
 
             </Container>
         </Modal >
