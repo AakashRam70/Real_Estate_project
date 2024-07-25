@@ -1,7 +1,10 @@
 import React from 'react';
 import { Avatar, Menu } from "@mantine/core";
+import { useNavigate } from 'react-router-dom';
 
 const ProfileMenu = ({ user, logout }) => {
+
+    const navigate = useNavigate();
 
     return (
         <Menu>
@@ -11,7 +14,7 @@ const ProfileMenu = ({ user, logout }) => {
             <Menu.Dropdown>
                 <Menu.Label>Application</Menu.Label>
                 <Menu.Item>Favourites</Menu.Item>
-                <Menu.Item>Bookings</Menu.Item>
+                <Menu.Item onClick={() => navigate("./bookings", { replace: true })}>Bookings</Menu.Item>
                 <Menu.Label>Go back</Menu.Label>
                 <Menu.Item onClick={() => {
                     localStorage.clear();
