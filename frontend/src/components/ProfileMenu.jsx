@@ -13,7 +13,7 @@ const ProfileMenu = ({ user, logout }) => {
             </Menu.Target>
             <Menu.Dropdown>
                 <Menu.Label>Application</Menu.Label>
-                <Menu.Item>Favourites</Menu.Item>
+                <Menu.Item onClick={() => navigate("./favourites", { replace: true })}>Favourites</Menu.Item>
                 <Menu.Item onClick={() => navigate("./bookings", { replace: true })}>Bookings</Menu.Item>
                 <Menu.Label>Go back</Menu.Label>
                 <Menu.Item onClick={() => {
