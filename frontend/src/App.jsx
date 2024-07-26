@@ -4,7 +4,6 @@ import Listing from './pages/Listing';
 import Favourites from './pages/Favourites';
 import Bookings from './pages/Bookings';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import { Suspense, useState } from 'react';
 import Layout from './components/Layout';
 import { QueryClient, QueryClientProvider } from "react-query";

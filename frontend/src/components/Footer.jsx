@@ -51,7 +51,7 @@ const Footer = () => {
                 </div>
             </div>
             {/* copyright */}
-            <p className='text-white bg-tertiary medium-14 py-2 px-8 rounded-b-3xl flexBetween'><span>2024 AakashProperties</span>All rights reserved</p>
+            <p className='text-white bg-tertiary medium-14 py-2 px-8 rounded-b-3xl flexBetween'><span>2024 AakashTerritory</span>All rights reserved</p>
         </footer>
     )
 }
