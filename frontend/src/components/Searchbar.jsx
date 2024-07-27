@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaLocationDot } from 'react-icons/fa6'
+import { FaMagnifyingGlassLocation } from "react-icons/fa6";
 
 const Searchbar = ({
     filter, setFilter
@@ -10,7 +10,7 @@ const Searchbar = ({
                 value={filter}
                 onChange={(e) => setFilter(e.target.value)}
                 type="text" placeholder='Enter residency name/title/city/country' className='bg-transparent border-none outline-none w-full' />
-            <FaLocationDot className='relative right-4 text-xl hover:text-secondary cursor-pointer' />
+            <FaMagnifyingGlassLocation className='relative right-4 text-xl hover:text-secondary cursor-pointer' />
         </div>
     );
 };
