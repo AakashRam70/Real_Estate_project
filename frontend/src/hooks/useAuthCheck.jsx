@@ -1,6 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { toast } from 'react-toastify'
 
+//auth content 
 const useAuthCheck = () => {
 
     const { isAuthenticated } = useAuth0()
