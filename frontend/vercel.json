@@ -2,10 +2,7 @@
     "rewrites": [
         {
             "source": "/(.*)",
-            "destination": "/"
+            "destination": "/dist"
         }
     ]
 }
-
-
-// https://github.com/AakashRam70/Real_Estate_project
